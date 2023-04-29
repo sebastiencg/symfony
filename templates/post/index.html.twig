@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+    {% for post in posts %}
+            <hr>
+            <p><strong>{{ post.titre }}</strong></p>
+            <p>{{ post.contenu }}</p>
+            <a class="btn btn-secondary" href="{{ path('show_post',{'id':post.id}) }}">info</a>
+            <hr>
+    {% endfor %}
+{% endblock %}

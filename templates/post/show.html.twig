@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+            <h3>{{ post.titre }}</h3>
+    <p><strong>publié le : {{ post.createdAt|date("d/m/Y") }}</strong></p>
+            <p>{{ post.contenu }}</p>
+    {% if app.user == post.author %}
+            <a class="btn btn-danger" href="{{  path('delete_post',{'id':post.id})  }}">supprimer</a>
+            <a class="btn btn-warning" href="{{   path('update_post',{'id':post.id})  }}">modifier</a>
+    {% endif %}
+    <div>
+
+        <h3>Write a comment</h3>
+        {{ form_start(commentForm,{'action': path('create_comment',{'id':post.id})}) }}
+        {{ form_row(commentForm.commentaire) }}
+        <button type="submit" class="btn btn-success">post comment</button>
+        {{ form_end(commentForm) }}
+    </div>
+
+    <div class="container comments">
+        {% for comment in post.commentaire %}
+
+            <div class="row border-border-dark">
+                <p><strong>{{ comment.commentaire }}</strong></p>
+                <p> {{ comment.createdAt|date("d/m/Y") }}</p>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

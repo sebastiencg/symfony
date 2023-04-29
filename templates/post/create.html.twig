@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PostController!{% endblock %}
+
+{% block body %}
+
+    {% if edit %}
+        <h2>modifier un post</h2>
+
+    {% else %}
+        <h2>éditer un post</h2>
+
+    {% endif %}
+    <div class="col-8 mx-auto p-2">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.titre) }}
+        {{ form_row(form.contenu) }}
+        <button type="submit" class="btn btn-primary"> envoyer</button>
+        {{ form_end(form) }}
+    </div>
+
+
+{% endblock %}
